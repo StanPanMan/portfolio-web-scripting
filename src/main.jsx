@@ -52,6 +52,24 @@ const db = {
   }
 }
 
+function Navbar() {
+  return (
+    <nav className="navbar navbar-default">
+      <div className="container-fluid">
+        <div className="navbar-header">
+          <a className="navbar-brand" href="../index.html">My Portfolio</a>
+        </div>
+        <ul className="nav navbar-nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../demos/simple-fetch.html">Simple Fetch Demo</a></li>
+          <li className="active"><a href="./">To Do App</a></li>
+        </ul>
+      </div>
+    </nav>
+  );
+}
+
+
 function App() {
   const [todos, setTodos] = useState([]);
 
@@ -76,20 +94,8 @@ function App() {
   const clearTodos = () => db.clear().then(db.getAll).then(setTodos);;
   return (
     <main>
+      <Navbar />
       <h1>To Do App!</h1>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-3">
-            <a href="../index.html"><button class="btn btn-block">Home Page</button></a>
-          </div>
-          <div class="col-xs-2">
-            <button class="btn btn-block">TBD Link</button>
-          </div>
-          <div class="col-xs-2">
-            <button class="btn btn-block">TBD Link</button>
-          </div>
-        </div>
-      </div>
 
       <SingleTextInputForm
         onSubmit={handleSubmit}
@@ -151,7 +157,7 @@ function SingleTextInputForm({ onSubmit, inputName, buttonText, placeholder = ""
   )
 }
 
-createRoot(document.querySelector("root")).render(
+createRoot(document.querySelector("#root")).render(
   <StrictMode>
     <App />
   </StrictMode>,
