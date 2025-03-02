@@ -11,7 +11,7 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
 export default defineConfig({
-  base: './',  // Ensures relative paths in production
+  base: '/portfolio-web-scripting/',  // Ensures relative paths in production
   plugins: [react()],
   build: {
     outDir: 'docs',

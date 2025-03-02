@@ -151,7 +151,7 @@ function SingleTextInputForm({ onSubmit, inputName, buttonText, placeholder = ""
   )
 }
 
-createRoot(document.querySelector("body")).render(
+createRoot(document.querySelector("root")).render(
   <StrictMode>
     <App />
   </StrictMode>,
