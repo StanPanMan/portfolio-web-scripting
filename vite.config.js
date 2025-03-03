@@ -19,6 +19,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),         // Main HTML file (root)
         todoApp: resolve(__dirname, 'todo-app/index.html'),  // Todo App HTML file
+        fetchDemo: resolve(__dirname, 'simple-fetch/index.html'),  // Simple Fetch Demo HTML file
       }
     }
   }

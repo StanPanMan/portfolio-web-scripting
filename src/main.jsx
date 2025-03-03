@@ -56,13 +56,10 @@ function Navbar() {
   return (
     <nav className="navbar navbar-default">
       <div className="container-fluid">
-        <div className="navbar-header">
-          <a className="navbar-brand" href="../index.html">My Portfolio</a>
-        </div>
         <ul className="nav navbar-nav">
           <li><a href="../index.html">Home</a></li>
-          <li><a href="../demos/simple-fetch.html">Simple Fetch Demo</a></li>
           <li className="active"><a href="./">To Do App</a></li>
+          <li><a href="../simple-fetch/">Simple Fetch Demo</a></li>
         </ul>
       </div>
     </nav>
