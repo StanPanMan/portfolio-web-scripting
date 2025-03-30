@@ -61,6 +61,7 @@ function Navbar() {
           <li className="active"><a href="./">To Do App</a></li>
           <li><a href="../simple-fetch/">Simple Fetch Demo</a></li>
           <li><a href="../local-fetch/">Local Fetch Demo</a></li>
+          <li><a href="../pixel-art/">Pixel-art Maker</a></li>
         </ul>
       </div>
     </nav>

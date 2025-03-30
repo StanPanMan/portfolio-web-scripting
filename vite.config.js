@@ -21,6 +21,7 @@ export default defineConfig({
         todoApp: resolve(__dirname, 'todo-app/index.html'),  // Todo App HTML file
         fetchDemo: resolve(__dirname, 'simple-fetch/index.html'),  // Simple Fetch Demo HTML file
         localFetchDemo: resolve(__dirname, 'local-fetch/index.html'),  // Local Fetch Demo HTML file
+        pixelArt: resolve(__dirname, 'pixel-art/index.html'),  // Pixel-Art HTML file
       }
     }
   }
