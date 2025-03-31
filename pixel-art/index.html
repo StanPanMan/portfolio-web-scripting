@@ -6,7 +6,8 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-  <title>Simple Fetch Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+  <title>Pixel-art Maker</title>
 </head>
 
 <body>
@@ -25,8 +26,17 @@
 
   <div class="container">
     <h1 class="header">Pixel-art Maker</h1>
-  </div>
+    <input type="color" id="colorPicker" value="#000000">
+    <button id="saveButton">Save Grid</button>
+    <button id="loadButton">Load Grid</button>
+    <!-- area for the alerts WIP <p id="message" class="message"></p> -->
+    <div id="pixelGrid"></div>
+  </div> 
 
 </body>
 
+<!-- may move to end of body instead of outside -->
+<script type="module" src="./main.js"></script>
+
 </html>
+
