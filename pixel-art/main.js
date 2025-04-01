@@ -2,8 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("pixelGrid");
   const colorPicker = document.getElementById("colorPicker");
 
-  // Create 16x16 grid - loop makes many pixels to be added to grid
-  for (let i = 0; i < 16 * 16; i++) {
+  // Create grid - loop makes many pixels to be added to grid
+  // Change griSize & .css file grid columns and rows - perhaps pixel size as well
+  const gridSize = 32
+  for (let i = 0; i < gridSize * gridSize; i++) {
     const pixel = document.createElement("div");
     pixel.classList.add("pixel");
     
