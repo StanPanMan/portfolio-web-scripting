@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Change color on click
     pixel.addEventListener("click", () => {
+      undoSaveState();
       pixel.style.backgroundColor = colorPicker.value;
       //pixel.style.border = colorPicker.value;
     });
@@ -22,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // Select the buttons
 const saveButton = document.getElementById('saveButton');
 const loadButton = document.getElementById('loadButton');
+const undoButton = document.getElementById('undoButton');
+const redoButton = document.getElementById('redoButton');
+const eraser = document.getElementById('eraser');
 const pixelGrid = document.getElementById('pixelGrid');
 
 // Function to save the current grid state to localStorage
@@ -53,3 +57,68 @@ loadButton.addEventListener('click', loadGridState);
 
 // Optional: auto image load on page load
 //window.addEventListener('load', loadGridState);
+
+// eraser tool
+let prevColor = "#000000";
+function eraserTool() {
+  if (colorPicker.value !== "#ffffff") {
+    prevColor = colorPicker.value
+    colorPicker.value = "#ffffff"
+    eraser.classList.add("active");
+  }
+  else {
+    colorPicker.value = prevColor;
+    eraser.classList.remove("active");
+  }
+}
+
+eraser.addEventListener('click', eraserTool);
+
+const undoStack = [];
+const redoStack = [];
+
+
+function getCurrentGridState() {
+  const pixels = [...document.querySelectorAll('.pixel')];
+  return pixels.map(pixel => pixel.style.backgroundColor);
+}
+
+function applyGridState(state) {
+  const pixels = [...document.querySelectorAll('.pixel')];
+  state.forEach((color, index) => {
+    pixels[index].style.backgroundColor = color;
+  });
+}
+
+// Save state before each change
+function undoSaveState() {
+  undoStack.push(getCurrentGridState());
+  
+  // Optional: limit how many undo states there are & remove the oldest state
+  if (undoStack.length > 30) {
+    undoStack.shift(); 
+  }
+  // Clear redo stack on new action
+  redoStack.length = 0;
+}
+
+// Undo button
+function undo() {
+  if (undoStack.length > 0) {
+    redoStack.push(getCurrentGridState());
+    applyGridState(undoStack.pop());
+  }
+}
+
+// Redo button
+function redo() {
+  if (redoStack.length > 0) {
+    const currentState = getCurrentGridState();
+    undoStack.push(currentState);
+    const nextState = redoStack.pop();
+    applyGridState(nextState);
+  }
+}
+
+undoButton.addEventListener('click', undo);
+redoButton.addEventListener('click', redo);
