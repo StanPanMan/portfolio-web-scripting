@@ -70,3 +70,19 @@
   color: white;
   border-radius: 5px;   
 }
+
+#brush1x1, #brush3x3 {
+  position: relative;
+  top: -4px;
+  margin: 7px;
+  padding: 7px;
+  background-color: #878787;
+  color: white;
+  border-radius: 5px;  
+  box-shadow: 2px 2px 5px #444, -2px -2px 5px #7b7b7b;
+}
+
+#brush1x1.active, #brush3x3.active {
+  background-color: #2b2b2b;
+  box-shadow: inset 2px 2px 5px #626262, inset -2px -2px 5px #717171;
+}

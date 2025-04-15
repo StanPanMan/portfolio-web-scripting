@@ -12,8 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Change color on click
     pixel.addEventListener("click", () => {
       undoSaveState();
+      if (brushMode === "1x1") {
       pixel.style.backgroundColor = colorPicker.value;
-      //pixel.style.border = colorPicker.value;
+      } else if (brushMode === "3x3") {
+        drawBrush3x3(i, 32)
+      }
     });
 
     grid.appendChild(pixel);
@@ -122,3 +125,48 @@ function redo() {
 
 undoButton.addEventListener('click', undo);
 redoButton.addEventListener('click', redo);
+
+// Brush Size
+let brushMode = '1x1'; // Default mode
+const brush1x1Btn = document.getElementById('brush1x1');
+const brush3x3Btn = document.getElementById('brush3x3');
+
+brush1x1Btn.classList.add('active'); // Default active
+
+// Toggle buttons
+brush1x1Btn.addEventListener('click', () => {
+  brushMode = '1x1';
+  brush1x1Btn.classList.add('active');
+  brush3x3Btn.classList.remove('active');
+});
+
+brush3x3Btn.addEventListener('click', () => {
+  brushMode = '3x3';
+  brush3x3Btn.classList.add('active');
+  brush1x1Btn.classList.remove('active');
+});
+
+// function to draw in a 3x3 space
+function drawBrush3x3(centerIndex, cols) {
+  const pixels = document.querySelectorAll('.pixel');
+
+  const row = Math.floor(centerIndex / cols); // divide the original pixel position by columns, once rounded this will give us the row the pixel is on
+  const col = centerIndex % cols; // The remainder lets us find the column of the pixel
+
+  // Loop over the range -1 to +1 in both directions to cover the 3x3 area
+  for (let r = -1; r <= 1; r++) {
+    for (let c = -1; c <= 1; c++) {
+      const newRow = row + r;
+      const newCol = col + c;
+
+      // Make sure the drawing doesnt wrap around
+      if (
+        newRow >= 0 && newRow < cols &&
+        newCol >= 0 && newCol < cols
+      ) {
+        const newIndex = newRow * cols + newCol;
+        pixels[newIndex].style.backgroundColor = colorPicker.value;
+      }
+    }
+  }
+}
